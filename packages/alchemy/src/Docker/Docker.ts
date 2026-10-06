@@ -394,6 +394,7 @@ export declare namespace Docker {
 
   export interface Container {
     Id: string;
+    Image: string;
     Name?: string;
     State: { Status: ContainerStatus };
     Created: string;

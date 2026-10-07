@@ -281,7 +281,11 @@ const requestManifest = Effect.fn(function* (
     if (credentials) {
       if (
         realm.host !== host &&
-        !(parsed.server === "docker.io" && realm.host === "auth.docker.io")
+        !(parsed.server === "docker.io" && realm.host === "auth.docker.io") &&
+        !(
+          (host === "registry.depot.dev" || /^[a-z0-9]+\.registry\.depot\.dev$/.test(host)) &&
+          realm.host === "api.depot.dev"
+        )
       ) {
         return yield* failure(
           "AuthenticationFailed",
